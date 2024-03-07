@@ -1,0 +1,61 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo {
+  margin-top: 36px;
+  cursor: pointer;
+}
+
+.user_login_wrapper {
+  display: flex;
+  margin-top: 64px;
+  position: relative;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.user_login_icon {
+  font-size: 26px;
+  margin-top: -3px;
+}
+
+.user_login_text {
+  font-size: 19px;
+  padding-left: 20px;
+}
+
+.user_login_wrapper:hover .user_login_text {
+  cursor: pointer;
+  opacity: 0.7;
+  transition: linear;
+}
+
+.log_out_btn {
+  right: 0;
+  position: absolute;
+  margin-top: 40px;
+  border: 3px solid var(--element-color);
+  padding: 14px 20px; /* Adjust padding for better sizing */
+  border-radius: 14px;
+  background-color: rgb(230, 77, 77);
+  color: var(--element-color);
+  display: none; /* Use inline-block to make it inline with the text */
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow if text is longer than the button */
+  text-overflow: ellipsis; /* Add ellipsis (...) if text is truncated */
+}
+
+.log_out_btn:hover {
+  opacity: 0.8;
+}
+
+.user_login_wrapper:hover .log_out_btn {
+  display: block;
+}

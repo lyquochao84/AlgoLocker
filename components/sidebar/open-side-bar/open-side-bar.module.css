@@ -1,0 +1,40 @@
+.sidebar {
+  width: 530px;
+  background-color: var(--theme-color);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  animation: sideBarAnimation 0.25s ease-in-out;
+}
+
+.close_icon {
+  font-size: 50px;
+  color: var(--element-color);
+  margin-top: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.close_icon:hover {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: ease-in-out;
+}
+
+@keyframes sideBarAnimation {
+  from {
+    opacity: 0; /* Initially set opacity to 0 */ 
+    transition: width 300ms ease-in, opacity 300ms ease-in,
+      transform 300ms ease-in;
+  }
+  to {
+    opacity: 1; /* Initially set opacity to 0 */
+    transition: width 300ms ease-in, opacity 300ms ease-in,
+      transform 300ms ease-in;
+  }
+}
