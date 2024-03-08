@@ -94,14 +94,7 @@ export const AuthContextProvider = ({
 
   // Login the user
   const logIn = (email: string, password: string) => {
-    setPersistence(auth, browserLocalPersistence)
-      .then(() => {
-        return signInWithEmailAndPassword(auth, email, password);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
   // Logout the user

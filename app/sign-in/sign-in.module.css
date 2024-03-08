@@ -85,10 +85,10 @@
 .log_in_button,
 .log_in_button_disabled {
   margin-top: 50px;
-  border: 2px solid var(--dark-pink);
+  border: 2px solid var(--theme-color);
   padding: 20px;
   border-radius: 5px;
-  background-color: var(--dark-pink);
+  background-color: transparent;
 }
 
 .log_in_button:hover {

@@ -22,7 +22,7 @@ export const topicOptions = [
   "Desgin",
   "Counting",
   "Sliding Window",
-  "Bracktracking",
+  "Backtracking",
   "Union Find",
   "Enumeration",
   "Linked List",

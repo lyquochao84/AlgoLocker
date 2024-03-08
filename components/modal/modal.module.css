@@ -23,6 +23,7 @@
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */
   overflow-y: scroll;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .modalContent::-webkit-scrollbar {
@@ -30,23 +31,41 @@
 }
 
 .modalHeader {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   color: var(--text-color);
-  border-bottom: 2px solid var(--theme-color);
-  padding-bottom: 20px;
+  border: 2px solid var(--theme-color);
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  background-image: linear-gradient(to right, #000 50%, transparent 50%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  padding: 24px 20px;
+  position: relative;
+}
+
+.modalHeader_text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .modalCloseIcon {
-  font-size: 24px;
+  font-size: 28px;
   color: var(--text-color);
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .modalCloseIcon:hover {
-  opacity: 0.8;
+  background-color: var(--theme-color);
+  color: var(--white);
+  border-radius: 50px;
   cursor: pointer;
 }
 
@@ -55,7 +74,14 @@
   color: var(--text-color);
 }
 
+.three_topics_text {
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 300;
+}
+
 .label {
+  font-size: 18px;
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
@@ -69,10 +95,12 @@
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .selectField {
   cursor: pointer;
+  background-color: transparent;
 }
 
 .btnContainer {
@@ -80,16 +108,116 @@
 }
 
 .btn {
-  border: 2px solid #38a169;
+  border: 2px solid var(--theme-color);
   padding: 20px;
   border-radius: 5px;
-  background-color: #38a169;
-  color: #fff;
+  background-color: transparent;
+  color: var(--text-color);
   cursor: pointer;
 }
 
 .btn:hover {
-  border: 2px solid #2f855a;
-  background-color: #2f855a;
+  border: 2px solid var(--theme-color);
+  background-color: var(--theme-color);
   color: var(--white);
+  transition: 0.1s linear;
+}
+
+.selected_topics_wrapper {
+  display: flex;
+  justify-content: space-around;
+  background-color: transparent;
+}
+
+.selected_topic {
+  display: flex;
+  padding: 6px;
+  border: 3px solid var(--theme-color);
+  border-radius: 20px;
+  background-color: var(--theme-color);
+  color: var(--white);
+}
+
+.selected_topic:hover {
+  opacity: 0.9;
+}
+
+.selected_topic_text {
+  margin-right: 4px;
+}
+
+.selected_topic_remove_icon {
+  margin-top: 1px;
+}
+
+.selected_topic_remove_icon:hover {
+  cursor: pointer;
+}
+
+.topic_options {
+  margin: 14px 0;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.topic_options:checked {
+  background: linear-gradient(#fafafa, #fcfcfd);
+  background-color: #f8f8ff !important; /*This one is for IE*/
+  color: var(--text-color);
+  -webkit-text-fill-color: var(--text-color);
+}
+
+.topic_options:hover {
+  opacity: 0.3;
+  background-color: transparent;
+}
+
+.topic_options:first-child {
+  margin-top: 0;
+}
+
+.topic_options:last-child {
+  margin-bottom: 0;
+}
+
+.difficulty_select_field {
+  width: 100%;
+  padding: 17.3px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: "Times New Roman", Times, serif;
+  position: relative;
+}
+
+.difficulty_select_field:hover {
+  cursor: pointer;
+}
+
+.select_field_icon {
+  float: right;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.difficulty_select_field_wrapper {
+  display: none;
+  width: 100%;
+  position: absolute;
+  top: 38.1px;
+  left: 0px;
+  background-color: var(--white);
+  font-size: 16px;
+  font-weight: 500;
+  padding-left: 10px;
+  z-index: 9999;
+  border-radius: 4px;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+.difficulty_select_field_item {
+  margin: 20px 0;
+}
+
+.difficulty_select_field_item:hover {
+  opacity: 0.5;
 }

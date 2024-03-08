@@ -2,7 +2,6 @@ import SearchBar from '../search-bar/page';
 
 import styles from './open-side-bar.module.css';
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import { useAuth } from '@/context/AuthContext';
 
 interface OpenSideBarProps {
     onClose: () => void;

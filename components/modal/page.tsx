@@ -1,8 +1,12 @@
-import { IoCloseCircleOutline } from "react-icons/io5";
+import { useState } from "react";
+
 import { topicOptions } from "@/constants/topics";
 
 import styles from "./modal.module.css";
-import { useState } from "react";
+
+import { IoCloseCircleOutline } from "react-icons/io5";
+import { RiArrowDropDownLine } from "react-icons/ri";
+
 
 interface CloseModal {
   onClose: () => void;
@@ -12,7 +16,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
 
   const handleTopicChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!selectedTopics.includes(e.target.value)) {
+    if (!selectedTopics.includes(e.target.value) && selectedTopics.length < 3) {
       setSelectedTopics([...selectedTopics, e.target.value]);
     }
   };
@@ -25,11 +29,17 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
     setSelectedTopics(updatedTopics);
   };
 
+  const toggleDropDown = (e: any) => {
+    if (e.target.value.classList.contains()) {
+
+    }
+  };  
+
   return (
     <div className={styles.backdrop}>
       <div className={styles.modalContent}>
         <div className={styles.modalHeader}>
-          Create Solution
+          <span className={styles.modalHeader_text}>Create Solution</span>
           <IoCloseCircleOutline
             className={styles.modalCloseIcon}
             onClick={onClose}
@@ -41,6 +51,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
             Problem Number:
           </label>
           <input
+            required
             type="text"
             id="problemNumber"
             name="problemNumber"
@@ -53,6 +64,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
             Problem Description:
           </label>
           <textarea
+            required
             id="problemDescription"
             name="problemDescription"
             className={styles.textareaField}
@@ -64,6 +76,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
             Problem Name:
           </label>
           <input
+            required
             type="text"
             id="problemName"
             name="problemName"
@@ -76,6 +89,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
             Time Complexity:
           </label>
           <input
+            required
             type="text"
             id="timeComplexity"
             name="timeComplexity"
@@ -88,6 +102,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
             Space Complexity:
           </label>
           <input
+            required
             type="text"
             id="spaceComplexity"
             name="spaceComplexity"
@@ -100,6 +115,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
             Code:
           </label>
           <textarea
+            required
             id="code"
             name="code"
             className={styles.textareaField}
@@ -111,6 +127,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
             Explanation:
           </label>
           <textarea
+            required
             id="explanation"
             name="explanation"
             className={styles.textareaField}
@@ -119,18 +136,22 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
 
         <div className={styles.formGroup}>
           <label className={styles.label} htmlFor="topic">
-            Topic:
+            Topic: <span className={styles.three_topics_text}>Choose up to 3 topics</span>
           </label>
           <select
             id="topic"
             name="topic"
             className={styles.selectField}
             onChange={handleTopicChange}
-            multiple 
+            multiple
             value={selectedTopics}
           >
             {topicOptions.map((topic) => (
-              <option key={topic} value={topic}>
+              <option
+                key={topic}
+                value={topic}
+                className={styles.topic_options}
+              >
                 {topic}
               </option>
             ))}
@@ -141,7 +162,9 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
           <ul className={styles.selected_topics_wrapper}>
             {selectedTopics.map((selectedTopic) => (
               <li key={selectedTopic} className={styles.selected_topic}>
-                <span className={styles.selected_topic_text}>{selectedTopic}</span>
+                <span className={styles.selected_topic_text}>
+                  {selectedTopic}
+                </span>
                 <IoCloseCircleOutline
                   className={styles.selected_topic_remove_icon}
                   onClick={() => handleRemoveTopic(selectedTopic)}
@@ -155,15 +178,14 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
           <label className={styles.label} htmlFor="difficulty">
             Difficulty:
           </label>
-          <select
-            id="difficulty"
-            name="difficulty"
-            className={styles.selectField}
-          >
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-          </select>
+          <div className={styles.difficulty_select_field} onClick={}>
+            <RiArrowDropDownLine className={styles.select_field_icon}/>
+            <ul className={styles.difficulty_select_field_wrapper}>
+              <li className={styles.difficulty_select_field_item}>Easy</li>
+              <li className={styles.difficulty_select_field_item}>Medium</li>
+              <li className={styles.difficulty_select_field_item}>Hard</li>
+            </ul>
+          </div>
         </div>
 
         <div className={styles.formGroup}>
@@ -182,8 +204,12 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
             Progress:
           </label>
           <select id="progress" name="progress" className={styles.selectField}>
-            <option value="in-progress">In Progress</option>
-            <option value="completed">Completed</option>
+            <option value="in-progress" className={styles.topic_options}>
+              In Progress
+            </option>
+            <option value="completed" className={styles.topic_options}>
+              Completed
+            </option>
           </select>
         </div>
 

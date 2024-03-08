@@ -1,0 +1,69 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+}
+
+.error_modal {
+  background-color: var(--theme-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+  box-sizing: border-box;
+  height: 430px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.error_modal_header {
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  color: var(--white);
+  border: 2px solid var(--white);
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  padding: 24px 20px;
+  position: relative;
+}
+
+.error_modal_header_text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.modalCloseIcon {
+  font-size: 28px;
+  color: var(--white);
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.modalCloseIcon:hover {
+  opacity: 0.5;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.error_message {
+  color: var(--white);
+  text-align: center;
+  padding: 104px 0;
+  font-size: 30px;
+  line-height: 36px;
+}

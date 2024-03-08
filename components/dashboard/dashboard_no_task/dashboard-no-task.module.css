@@ -16,7 +16,7 @@
   font-weight: 600;
   opacity: 0;
   transform: translateY(50px);
-  animation: slideIn 1s forwards;
+  animation: slideIn 3s forwards;
 }
 
 .dashboard_welcome_message_text_body {
@@ -24,25 +24,29 @@
   font-weight: 450;
   opacity: 0;
   transform: translateY(50px);
-  animation: slideIn 2s forwards;
+  animation: slideIn 4s forwards;
 }
 
 .create_solution_btn {
+  border: 2px solid var(--theme-color);
   border-radius: 0.375rem;
-  background-color: #38a169;
-  padding-left: 2.5rem; 
-  padding-right: 2.5rem; 
-  padding-top: 0.75rem; 
-  padding-bottom: 0.75rem; 
-  color: #ffffff; 
+  background-color: transparent;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  color: var(--text-color);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   opacity: 0;
   transform: translateY(50px);
-  animation: slideIn 3s forwards;
+  animation: slideIn 5s forwards;
 }
 
 .create_solution_btn:hover {
-    background-color: #2f855a;
+  border: 2px solid var(--theme-color);
+  background-color: var(--theme-color);
+  color: var(--white);
+  transition: 0.1s linear;
 }
 
 @keyframes slideIn {

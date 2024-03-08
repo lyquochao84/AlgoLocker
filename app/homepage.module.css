@@ -22,16 +22,14 @@
   line-height: 80px;
   overflow: hidden;
   white-space: nowrap;
-  animation: typing 5s steps(40, end) infinite; /* Adjust the duration and steps as needed */
-  animation-delay: 1.8s; /* Delay the start of this animation by the duration of the header animation */
 }
 
 .homepage_signup_btn {
   margin-top: 20px;
-  border: 2px solid var(--dark-pink);
+  border: 2px solid var(--theme-color);
   padding: 20px;
   border-radius: 5px;
-  background-color: var(--dark-pink);
+  background-color: transparent;
 }
 
 .homepage_signup_btn:hover {
