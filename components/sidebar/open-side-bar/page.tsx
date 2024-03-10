@@ -1,11 +1,9 @@
 import SearchBar from '../search-bar/page';
 
+import { OpenSideBarProps } from '@/types/sidebar';
+
 import styles from './open-side-bar.module.css';
 import { IoIosCloseCircleOutline } from "react-icons/io";
-
-interface OpenSideBarProps {
-    onClose: () => void;
-}
 
 const OpenSideBar: React.FC<OpenSideBarProps> = ({ onClose }) => {
     return (

@@ -1,16 +1,13 @@
 import Link from "next/link";
 
+import { CloseSideBarProps } from "@/types/sidebar";
+
 import styles from "./close-side-bar.module.css";
 
 import { HiBars3 } from "react-icons/hi2";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
-
-interface CloseSideBarProps {
-  onOpen: () => void;
-  onWarning: () => void;
-}
 
 const CloseSideBar: React.FC<CloseSideBarProps> = ({ onOpen }) => {
  

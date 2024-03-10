@@ -2,7 +2,6 @@ import styles from './search-bar.module.css';
 
 import { IoSearch } from "react-icons/io5";
 
-
 const SearchBar: React.FC = () => {
     return (
         <div className={styles.search_box}>

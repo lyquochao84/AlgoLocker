@@ -23,7 +23,6 @@
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */
   overflow-y: scroll;
-  font-family: "Times New Roman", Times, serif;
 }
 
 .modalContent::-webkit-scrollbar {
@@ -95,7 +94,6 @@
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-family: "Times New Roman", Times, serif;
 }
 
 .selectField {
@@ -156,7 +154,8 @@
 
 .topic_options {
   margin: 14px 0;
-  font-family: "Times New Roman", Times, serif;
+  font-weight: 500;
+  font-size: 15px;
 }
 
 .topic_options:checked {
@@ -181,12 +180,12 @@
 
 .difficulty_select_field {
   width: 100%;
-  padding: 17.3px;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-family: "Times New Roman", Times, serif;
   position: relative;
+  padding: 12px;
+  height: 100%;
 }
 
 .difficulty_select_field:hover {
@@ -196,22 +195,21 @@
 .select_field_icon {
   float: right;
   top: 50%;
-  transform: translateY(-50%);
 }
 
 .difficulty_select_field_wrapper {
-  display: none;
   width: 100%;
   position: absolute;
-  top: 38.1px;
+  top: 40px;
   left: 0px;
   background-color: var(--white);
-  font-size: 16px;
   font-weight: 500;
+  font-size: 15px;
   padding-left: 10px;
   z-index: 9999;
   border-radius: 4px;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  font-weight: 500;
 }
 
 .difficulty_select_field_item {
@@ -221,3 +219,46 @@
 .difficulty_select_field_item:hover {
   opacity: 0.5;
 }
+
+.select_field_chosen_text {
+  font-size: 14px;
+}
+
+.progress_select_field {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  position: relative;
+  padding: 12px;
+  height: 100%;
+}
+
+.progress_select_field:hover {
+  cursor: pointer;
+}
+
+.progress_select_field_wrapper {
+  width: 100%;
+  position: absolute;
+  top: 40px;
+  left: 0px;
+  background-color: var(--white);
+  font-weight: 500;
+  font-size: 15px;
+  padding-left: 10px;
+  z-index: 9999;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  font-weight: 500;
+}
+
+.progress_select_field_item {
+  margin: 20px 0;
+}
+
+.progress_select_field_item:hover {
+  opacity: 0.5;
+}
+
+

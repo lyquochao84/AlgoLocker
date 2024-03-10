@@ -1,11 +1,8 @@
 import styles from "./error-modal.module.css";
 
-import { IoCloseCircleOutline } from "react-icons/io5";
+import { ErrorMessages } from "@/types/error-message";
 
-interface ErrorMessages {
-    message: string;
-    onClose: () => void;
-};
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 const ErrorModal: React.FC<ErrorMessages> = ({ message, onClose }) => {
   return (
