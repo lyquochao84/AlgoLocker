@@ -1,5 +1,8 @@
 import { useState, useRef } from "react";
+import { useAuth } from "@/context/AuthContext";
+import { doc, setDoc } from "@firebase/firestore";
 
+import { programmingLanguages } from "@/constants/programming_languages";
 import { topicOptions } from "@/constants/topics";
 import { CloseModal } from "@/types/modal";
 import { db } from "@/config/db";
@@ -8,27 +11,32 @@ import styles from "./modal.module.css";
 
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import { useAuth } from "@/context/AuthContext";
-import { addDoc, doc, setDoc } from "@firebase/firestore";
+import CodeEditor from "./code-editor/page";
 
 const Modal: React.FC<CloseModal> = ({ onClose }) => {
   const { user } = useAuth();
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
+
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>("");
   const [selectedProgress, setSelectedProgress] = useState<string>("");
+  const [selectedLanguages, setSelectedLanguages] = useState<string>("");
+
   const [isDifficultyOpen, setIsDifficultyOpen] = useState<Boolean>(false);
   const [isProgressOpen, setIsProgressOpen] = useState<Boolean>(false);
+  const [isLanguagesOpen, setIsLanguagesOpen] = useState<Boolean>(false);
+
   // Handle Modal Submission
-  const problemNumberRef = useRef<HTMLInputElement>(null); // Input
-  const problemNameRef = useRef<HTMLInputElement>(null); // Input
-  const problemDescriptionRef = useRef<HTMLTextAreaElement>(null); // Input
-  const timeComplexityRef = useRef<HTMLInputElement>(null); // Input
-  const spaceComplexityRef = useRef<HTMLInputElement>(null); // Input
-  const codeRef = useRef<HTMLTextAreaElement>(null); // Input
-  const explanationRef = useRef<HTMLTextAreaElement>(null); // Input
-  const difficultyRef = useRef<HTMLDivElement>(null); // Select Array
-  const relatedLinksRef = useRef<HTMLTextAreaElement>(null); // Input
-  const progressRef = useRef<HTMLDivElement>(null); // Select Array
+  const problemNumberRef = useRef<HTMLInputElement>(null);
+  const problemNameRef = useRef<HTMLInputElement>(null);
+  const problemDescriptionRef = useRef<HTMLTextAreaElement>(null);
+  const timeComplexityRef = useRef<HTMLInputElement>(null);
+  const spaceComplexityRef = useRef<HTMLInputElement>(null);
+  const codeRef = useRef<HTMLTextAreaElement>(null);
+  const explanationRef = useRef<HTMLTextAreaElement>(null);
+  const programmingLanguagesRef = useRef<HTMLDivElement>(null);
+  const difficultyRef = useRef<HTMLDivElement>(null);
+  const relatedLinksRef = useRef<HTMLTextAreaElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
 
   // Select Topics
   const handleTopicChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -64,6 +72,15 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
     setSelectedProgress(progress);
   };
 
+  // Programming Languages Bar
+  const toggleLanguages = () => {
+    setIsLanguagesOpen(!isLanguagesOpen);
+  };
+
+  const languagesHandler = (language: string) => {
+    setSelectedLanguages(language);
+  };
+
   // Submit Modal
   const submitModalHandler = () => {
     const userId = user.uid;
@@ -76,6 +93,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
     const code = codeRef.current?.value || "";
     const explanation = explanationRef.current?.value || "";
     const topics = selectedTopics.map((topic) => topic);
+    const programmingLanguages = programmingLanguagesRef.current?.textContent || "";
     const difficulty = difficultyRef.current?.textContent || "";
     const relatedLinks = relatedLinksRef.current?.value || "";
     const progress = progressRef.current?.textContent || "";
@@ -89,17 +107,17 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
       code: code,
       explanation: explanation,
       topic: topics,
+      programming_languages: programmingLanguages,
       difficulty: difficulty,
       relatedLinks: relatedLinks,
-      progress: progress
-    }
+      progress: progress,
+    };
 
     try {
       const userRef = setDoc(doc(db, "solutions", userId), newSolution);
       // Close the modal after successful submission
       onClose();
-    }
-    catch (error: any) {
+    } catch (error: any) {
       console.log(error);
     }
   };
@@ -185,6 +203,35 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
         </div>
 
         <div className={styles.formGroup}>
+          <label className={styles.label} htmlFor="programmingLanguages">
+            Programming Languages:
+          </label>
+          <div
+            className={styles.programming_languages_select_field}
+            onClick={toggleLanguages}
+            ref={difficultyRef}
+          >
+            <RiArrowDropDownLine className={styles.select_field_icon} />
+            <p className={styles.select_field_chosen_text}>
+              {!selectedLanguages ? "C++" : selectedLanguages}
+            </p>
+            {isLanguagesOpen && (
+              <ul className={styles.programming_languages_select_field_wrapper}>
+                {programmingLanguages.map((language) => (
+                  <li
+                    key={language}
+                    onClick={() => languagesHandler(language)}
+                    className={styles.programming_languages_select_field_item}
+                  >
+                    {language}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+
+        <div className={styles.formGroup}>
           <label className={styles.label} htmlFor="code">
             Code:
           </label>
@@ -194,7 +241,9 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
             name="code"
             className={styles.textareaField}
             ref={codeRef}
-          ></textarea>
+          >
+            <CodeEditor />
+          </textarea>
         </div>
 
         <div className={styles.formGroup}>
@@ -237,7 +286,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
           </select>
         </div>
 
-        <div className={styles.formGroup}>
+        <div>
           <ul className={styles.selected_topics_wrapper}>
             {selectedTopics.map((selectedTopic) => (
               <li key={selectedTopic} className={styles.selected_topic}>
@@ -253,7 +302,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
           </ul>
         </div>
 
-        <div className={styles.formGroup}>
+        <div className={`${styles.formGroup} ${styles.difficulty_wrapper}`}>
           <label className={styles.label} htmlFor="difficulty">
             Difficulty:
           </label>

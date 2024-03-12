@@ -122,6 +122,7 @@
 }
 
 .selected_topics_wrapper {
+  margin-top: -4px;
   display: flex;
   justify-content: space-around;
   background-color: transparent;
@@ -176,6 +177,10 @@
 
 .topic_options:last-child {
   margin-bottom: 0;
+}
+
+.difficulty_wrapper {
+  margin-top: 9px;
 }
 
 .difficulty_select_field {
@@ -260,5 +265,45 @@
 .progress_select_field_item:hover {
   opacity: 0.5;
 }
+
+.programming_languages_select_field {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  position: relative;
+  padding: 12px;
+  height: 100%;
+}
+
+.programming_languages_select_field:hover {
+  cursor: pointer;
+}
+
+.programming_languages_select_field_wrapper {
+  width: 100%;
+  position: absolute;
+  top: 40px;
+  left: 0px;
+  background-color: var(--white);
+  font-weight: 500;
+  font-size: 15px;
+  padding-left: 10px;
+  z-index: 9999;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  font-weight: 500;
+  height: 200px;
+  overflow-y: auto;
+}
+
+.programming_languages_select_field_item {
+  margin: 20px 0;
+}
+
+.programming_languages_select_field_item:hover {
+  opacity: 0.5;
+}
+
 
 
