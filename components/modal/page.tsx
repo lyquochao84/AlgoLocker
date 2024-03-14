@@ -90,7 +90,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
   }
 
   // Submit Modal
-  const submitModalHandler = () => {
+  const submitModalHandler = (event: React.FormEvent) => {
     const userId = user.uid;
     // Access values from refs
     const problemNumber = problemNumberRef.current?.value || "";
@@ -122,6 +122,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
     };
 
     try {
+      event.preventDefault();
       const userRef = setDoc(doc(db, "solutions", userId), newSolution);
       onClose();
     } 
@@ -146,13 +147,13 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
             Problem Number:
           </label>
           <input
-            required
             type="text"
             id="problemNumber"
             name="problemNumber"
             className={styles.inputField}
             ref={problemNumberRef}
-          />
+            required
+            />
         </div>
 
         <div className={styles.formGroup}>
@@ -243,7 +244,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
           <label className={styles.label} htmlFor="code">
             Code:
           </label>
-          <CodeEditor handleEditorDidMount={handleEditorDidMount}/>
+          <CodeEditor selectedLanguages={selectedLanguages} handleEditorDidMount={handleEditorDidMount}/>
         </div>
 
         <div className={styles.formGroup}>
@@ -273,6 +274,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
             onChange={handleTopicChange}
             multiple
             value={selectedTopics}
+            required
           >
             {topicOptions.map((topic) => (
               <option
@@ -385,7 +387,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
         </div>
 
         <div className={styles.btnContainer}>
-          <button className={styles.btn} onClick={submitModalHandler}>
+          <button type="submit" className={styles.btn} onClick={submitModalHandler}>
             Submit
           </button>
         </div>

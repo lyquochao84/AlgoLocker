@@ -6,4 +6,5 @@ export interface EditorRef {
 
 export interface CodeChange {
   handleEditorDidMount: OnMount;
+  selectedLanguages: string;
 }
