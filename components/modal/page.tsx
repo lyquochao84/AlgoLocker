@@ -11,7 +11,14 @@ import styles from "./modal.module.css";
 
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { RiArrowDropDownLine } from "react-icons/ri";
+
 import CodeEditor from "./code-editor/page";
+import { Monaco, OnMount } from "@monaco-editor/react";
+import { editor } from "monaco-editor";
+
+interface EditorRef {
+  getValue(): string;
+}
 
 const Modal: React.FC<CloseModal> = ({ onClose }) => {
   const { user } = useAuth();
@@ -31,7 +38,9 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
   const problemDescriptionRef = useRef<HTMLTextAreaElement>(null);
   const timeComplexityRef = useRef<HTMLInputElement>(null);
   const spaceComplexityRef = useRef<HTMLInputElement>(null);
-  const codeRef = useRef<HTMLTextAreaElement>(null);
+
+  const codeRef = useRef<EditorRef | null>(null);
+
   const explanationRef = useRef<HTMLTextAreaElement>(null);
   const programmingLanguagesRef = useRef<HTMLDivElement>(null);
   const difficultyRef = useRef<HTMLDivElement>(null);
@@ -81,6 +90,11 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
     setSelectedLanguages(language);
   };
 
+  // Code Editor Part
+  const handleEditorDidMount: OnMount = (editor: editor.IStandaloneCodeEditor) => {
+    codeRef.current = editor;
+  }
+
   // Submit Modal
   const submitModalHandler = () => {
     const userId = user.uid;
@@ -90,7 +104,9 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
     const problemDescription = problemDescriptionRef.current?.value || "";
     const timeComplexity = timeComplexityRef.current?.value || "";
     const spaceComplexity = spaceComplexityRef.current?.value || "";
-    const code = codeRef.current?.value || "";
+
+    const code = codeRef.current?.getValue();
+
     const explanation = explanationRef.current?.value || "";
     const topics = selectedTopics.map((topic) => topic);
     const programmingLanguages = programmingLanguagesRef.current?.textContent || "";
@@ -209,7 +225,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
           <div
             className={styles.programming_languages_select_field}
             onClick={toggleLanguages}
-            ref={difficultyRef}
+            ref={programmingLanguagesRef}
           >
             <RiArrowDropDownLine className={styles.select_field_icon} />
             <p className={styles.select_field_chosen_text}>
@@ -235,15 +251,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
           <label className={styles.label} htmlFor="code">
             Code:
           </label>
-          <textarea
-            required
-            id="code"
-            name="code"
-            className={styles.textareaField}
-            ref={codeRef}
-          >
-            <CodeEditor />
-          </textarea>
+          <CodeEditor handleEditorDidMount={handleEditorDidMount}/>
         </div>
 
         <div className={styles.formGroup}>

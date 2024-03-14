@@ -1,11 +1,26 @@
-'use client';
+"use client";
 
-import * as monaco from 'monaco-editor';
+import styles from './code-editor.module.css';
 
-const CodeEditor: React.FC = () => {
-    return (
-        <h1>Code Editor</h1>
-    )
+import { Editor } from "@monaco-editor/react";
+import { OnMount } from '@monaco-editor/react';
+
+interface CodeChange {
+  handleEditorDidMount: OnMount
+}
+
+const CodeEditor: React.FC<CodeChange> = ({ handleEditorDidMount }) => {
+  return (
+    <div className={styles.code_editor_wrapper}>
+      <Editor
+        height="280px"
+        defaultLanguage="python"
+        theme="Github"
+        defaultValue="//Write code here"
+        onMount={handleEditorDidMount}
+      />
+    </div>
+  );
 };
 
 export default CodeEditor;
