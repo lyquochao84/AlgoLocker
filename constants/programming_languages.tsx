@@ -6,13 +6,11 @@ export const programmingLanguages = [
     'Python',
     'Kotlin',
     'Python3',
-    'Dart',
     'C',
     'Go',
     'C#',
     'Ruby',
     'Javascript',
-    'Scala',
     'Typescript',
     'Rust'
 ];
