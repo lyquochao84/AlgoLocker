@@ -6,19 +6,15 @@ import { programmingLanguages } from "@/constants/programming_languages";
 import { topicOptions } from "@/constants/topics";
 import { CloseModal } from "@/types/modal";
 import { db } from "@/config/db";
+import CodeEditor from "./code-editor/page";
+import { OnMount } from "@monaco-editor/react";
+import { editor } from "monaco-editor";
+import { EditorRef } from "@/types/code-editor";
 
 import styles from "./modal.module.css";
 
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { RiArrowDropDownLine } from "react-icons/ri";
-
-import CodeEditor from "./code-editor/page";
-import { Monaco, OnMount } from "@monaco-editor/react";
-import { editor } from "monaco-editor";
-
-interface EditorRef {
-  getValue(): string;
-}
 
 const Modal: React.FC<CloseModal> = ({ onClose }) => {
   const { user } = useAuth();
@@ -38,9 +34,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
   const problemDescriptionRef = useRef<HTMLTextAreaElement>(null);
   const timeComplexityRef = useRef<HTMLInputElement>(null);
   const spaceComplexityRef = useRef<HTMLInputElement>(null);
-
   const codeRef = useRef<EditorRef | null>(null);
-
   const explanationRef = useRef<HTMLTextAreaElement>(null);
   const programmingLanguagesRef = useRef<HTMLDivElement>(null);
   const difficultyRef = useRef<HTMLDivElement>(null);
@@ -104,9 +98,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
     const problemDescription = problemDescriptionRef.current?.value || "";
     const timeComplexity = timeComplexityRef.current?.value || "";
     const spaceComplexity = spaceComplexityRef.current?.value || "";
-
     const code = codeRef.current?.getValue();
-
     const explanation = explanationRef.current?.value || "";
     const topics = selectedTopics.map((topic) => topic);
     const programmingLanguages = programmingLanguagesRef.current?.textContent || "";
@@ -131,9 +123,9 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
 
     try {
       const userRef = setDoc(doc(db, "solutions", userId), newSolution);
-      // Close the modal after successful submission
       onClose();
-    } catch (error: any) {
+    } 
+    catch (error: any) {
       console.log(error);
     }
   };

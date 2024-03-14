@@ -3,19 +3,15 @@
 import styles from './code-editor.module.css';
 
 import { Editor } from "@monaco-editor/react";
-import { OnMount } from '@monaco-editor/react';
-
-interface CodeChange {
-  handleEditorDidMount: OnMount
-}
+import { CodeChange } from '@/types/code-editor';
 
 const CodeEditor: React.FC<CodeChange> = ({ handleEditorDidMount }) => {
   return (
     <div className={styles.code_editor_wrapper}>
       <Editor
-        height="280px"
-        defaultLanguage="python"
-        theme="Github"
+        height="310px"
+        defaultLanguage="java"
+        theme="vs-dark"
         defaultValue="//Write code here"
         onMount={handleEditorDidMount}
       />
