@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useAuth } from "@/context/AuthContext";
-import { doc, setDoc } from "@firebase/firestore";
+import { addDoc, collection, doc, setDoc } from "@firebase/firestore";
 
 import { programmingLanguages } from "@/constants/programming_languages";
 import { topicOptions } from "@/constants/topics";
@@ -90,7 +90,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
   }
 
   // Submit Modal
-  const submitModalHandler = (event: React.FormEvent) => {
+  const submitModalHandler = async (event: React.FormEvent) => {
     const userId = user.uid;
     // Access values from refs
     const problemNumber = problemNumberRef.current?.value || "";
@@ -123,7 +123,8 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
 
     try {
       event.preventDefault();
-      const userRef = setDoc(doc(db, "solutions", userId), newSolution);
+      const docRef = await addDoc(collection(db, "users", userId, "solutions"), newSolution);
+      console.log(docRef);
       onClose();
     } 
     catch (error: any) {
@@ -132,7 +133,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
   };
 
   return (
-    <div className={styles.backdrop}>
+    <form onSubmit={submitModalHandler} className={styles.backdrop}>
       <div className={styles.modalContent}>
         <div className={styles.modalHeader}>
           <span className={styles.modalHeader_text}>Create Solution</span>
@@ -161,13 +162,13 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
             Problem Name:
           </label>
           <input
-            required
             type="text"
             id="problemName"
             name="problemName"
             className={styles.inputField}
             ref={problemNameRef}
-          />
+            required
+            />
         </div>
 
         <div className={styles.formGroup}>
@@ -175,11 +176,11 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
             Problem Description:
           </label>
           <textarea
-            required
             id="problemDescription"
             name="problemDescription"
             className={styles.textareaField}
             ref={problemDescriptionRef}
+            required
           ></textarea>
         </div>
 
@@ -188,12 +189,12 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
             Time Complexity:
           </label>
           <input
-            required
             type="text"
             id="timeComplexity"
             name="timeComplexity"
             className={styles.inputField}
             ref={timeComplexityRef}
+            required
           />
         </div>
 
@@ -202,12 +203,12 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
             Space Complexity:
           </label>
           <input
-            required
             type="text"
             id="spaceComplexity"
             name="spaceComplexity"
             className={styles.inputField}
             ref={spaceComplexityRef}
+            required
           />
         </div>
 
@@ -252,12 +253,12 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
             Explanation:
           </label>
           <textarea
-            required
             id="explanation"
             name="explanation"
             className={styles.textareaField}
             ref={explanationRef}
-          ></textarea>
+            required
+            ></textarea>
         </div>
 
         <div className={styles.formGroup}>
@@ -387,12 +388,12 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
         </div>
 
         <div className={styles.btnContainer}>
-          <button type="submit" className={styles.btn} onClick={submitModalHandler}>
+          <button type="submit" className={styles.btn}>
             Submit
           </button>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 
