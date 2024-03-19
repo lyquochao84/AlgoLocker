@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useAuth } from "@/context/AuthContext";
-import { addDoc, collection, doc, setDoc } from "@firebase/firestore";
+import { addDoc, collection } from "@firebase/firestore";
 
 import { programmingLanguages } from "@/constants/programming_languages";
 import { topicOptions } from "@/constants/topics";
@@ -124,7 +124,6 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
     try {
       event.preventDefault();
       const docRef = await addDoc(collection(db, "users", userId, "solutions"), newSolution);
-      console.log(docRef);
       onClose();
     } 
     catch (error: any) {

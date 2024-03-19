@@ -8,8 +8,8 @@ const Dashboard: React.FC = () => {
 
   return (
     <ProtectedRoute>
-      <DashBoardNoTask />
-      {/* <DashBoardTask /> */}
+      {/* <DashBoardNoTask /> */}
+      <DashBoardTask />
     </ProtectedRoute>
   );
 };
