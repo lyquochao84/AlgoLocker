@@ -1,53 +1,14 @@
-import { getDocs, collection } from "firebase/firestore";
-import { useAuth } from "@/context/AuthContext";
-import { useState, useEffect, ReactEventHandler } from "react";
+import { useState } from "react";
 import { Solution } from "@/types/solution";
-import { db } from "@/config/db";
+import { SolutionByTopic } from "@/types/solutions-by-topic";
 
 import styles from "./dashboard-task.module.css";
 import { RiArrowDropDownLine, RiArrowDropRightLine } from "react-icons/ri";
 
-const DashBoardTask: React.FC = () => {
-  const { user } = useAuth();
-  const userId = user.uid;
-  const [solutionsByTopic, setSolutionsByTopic] = useState<
-    Record<string, Solution[]>
-  >({});
+const DashBoardTask: React.FC<SolutionByTopic> = ({ solutionsByTopic }) => {
   const [renderContent, setRenderContent] = useState<Solution[]>();
   const [showContent, setShowContent] = useState<boolean>(false);
   const [selectedTopic, setSelectedTopic] = useState<string>("");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const querySnapshot = await getDocs(
-          collection(db, "users", userId, "solutions")
-        );
-        const fetchedSolutions: any[] = [];
-
-        querySnapshot.forEach((doc) => {
-          fetchedSolutions.push({ id: doc.id, ...doc.data() });
-        });
-
-        // Group solutions by topic
-        const solutionsGroupedByTopic: Record<string, Solution[]> = {};
-
-        fetchedSolutions.forEach((solution) => {
-          solution.topic.forEach((topic: string) => {
-            if (!solutionsGroupedByTopic[topic]) {
-              solutionsGroupedByTopic[topic] = [];
-            }
-            solutionsGroupedByTopic[topic].push(solution);
-          });
-        });
-
-        setSolutionsByTopic(solutionsGroupedByTopic);
-      } catch (error: any) {
-        console.error("Error fetching solutions:", error);
-      }
-    };
-    fetchData();
-  }, [userId]);
 
   const renderHandler = (topic: string) => {
     const solutionsForTopic = solutionsByTopic[topic] || [];
@@ -123,7 +84,11 @@ const DashBoardTask: React.FC = () => {
                       </p>
                     ))}
                   </div>
-                  <p className={`${styles.solution_short_details_text} ${getProgressColor(solution.progress)}`}>
+                  <p
+                    className={`${
+                      styles.solution_short_details_text
+                    } ${getProgressColor(solution.progress)}`}
+                  >
                     {solution.progress}
                   </p>
                 </div>
