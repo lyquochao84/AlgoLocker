@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useRef } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { addDoc, collection } from "@firebase/firestore";
@@ -15,6 +17,7 @@ import styles from "./modal.module.css";
 
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { RiArrowDropDownLine } from "react-icons/ri";
+
 
 const Modal: React.FC<CloseModal> = ({ onClose }) => {
   const { user } = useAuth();
