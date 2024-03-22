@@ -3,11 +3,7 @@
   margin-left: 11px;
   width: 100%;
   height: 100%;
-}
-
-.column {
-  float: left;
-  width: 25%;
+  column-count: 4;
 }
 
 .topic_task_wrapper {
@@ -18,7 +14,7 @@
   width: 240px;
   border-radius: 5px;
   border: 2px solid var(--theme-color);
-  padding: 20px ;
+  padding: 20px;
   margin-bottom: 22px;
 }
 
@@ -37,4 +33,90 @@
 .topic_task_icon {
   font-size: 16px;
   margin-top: 4px;
+}
+
+.topic_task_selected_wrapper {
+  margin-top: 50px;
+  margin-left: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  width: 240px;
+  border-radius: 5px;
+  border: 2px solid var(--theme-color);
+  padding: 20px;
+  margin-bottom: 22px;
+}
+
+.topic_task_selected_wrapper:hover {
+  border: 2px solid var(--theme-color);
+  background-color: var(--theme-color);
+  color: var(--white);
+  transition: 0.1s linear;
+  cursor: pointer;
+}
+
+.topic_task_short_details_body {
+  margin-left: 11px;
+  width: 100%;
+  height: 100%;
+}
+
+.solution_short_details {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 30px;
+  align-items: center;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  justify-content: space-between;
+}
+
+.solution_short_details:hover {
+  cursor: pointer;
+}
+
+.solution_short_details_number_name_wrapper {
+  display: flex;
+}
+
+.solution_short_details_text,
+.solution_short_details_name {
+  color: var(--text-color);
+  font-size: 20px;
+}
+
+.solution_short_details_name {
+  margin-left: 5px;
+}
+
+.solution_short_details_topics_wrapper {
+  display: flex;
+}
+
+.solution_short_details_topics {
+  padding: 6px;
+  border: 3px solid var(--theme-color);
+  border-radius: 20px;
+  background-color: var(--theme-color);
+  color: var(--white);
+}
+
+/* dashboard-task.module.css */
+.completed, .easy {
+  --tw-text-opacity: 1;
+  color: rgb(0 184 163/var(--tw-text-opacity))
+}
+
+.in_progress, .medium {
+  --tw-text-opacity: 1;
+    color: rgb(255 192 30 / var(--tw-text-opacity));
+}
+
+.hard {
+  --tw-text-opacity: 1;
+  color: rgb(255 55 95 / var(--tw-text-opacity));
 }

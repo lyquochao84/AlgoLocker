@@ -1,4 +1,5 @@
 export interface Solution {
+    id: string,
     number: string,
     name: string,
     code: string,
@@ -10,5 +11,5 @@ export interface Solution {
     link: string,
     time_complexity: string,
     space_complexity: string,
-    topics: string[]
+    topic: string[]
 };
