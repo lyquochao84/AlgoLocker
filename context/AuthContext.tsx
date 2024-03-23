@@ -1,23 +1,15 @@
 "use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import {
-  browserLocalPersistence,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
-  setPersistence,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
 } from "firebase/auth";
 import { auth } from "@/config/db";
 import { useRouter } from "next/navigation";
-
-// User data type interface
-interface UserType {
-  email: string | null;
-  uid: string | null;
-  displayName: string | null;
-}
+import { UserType } from "@/types/user-type";
 
 const AuthContext = createContext<any>({});
 
