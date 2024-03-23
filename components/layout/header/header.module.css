@@ -62,3 +62,22 @@
 .user_login_wrapper:hover .log_out_btn {
   display: block;
 }
+
+.header_user_add_wrapper {
+  display: flex;
+}
+
+.header_btn_icon {
+  font-size: 30px;
+  margin-top: 60px;
+  margin-right: 44px;
+  position: relative;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.header_btn_icon:hover {
+  background-color: var(--theme-color);
+  color: var(--white);
+  border-radius: 50px;
+}

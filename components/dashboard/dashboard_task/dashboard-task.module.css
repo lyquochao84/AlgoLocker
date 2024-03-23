@@ -45,14 +45,16 @@
   width: 240px;
   border-radius: 5px;
   border: 2px solid var(--theme-color);
+  background-color: var(--theme-color);
+  color: var(--white);
   padding: 20px;
   margin-bottom: 22px;
 }
 
 .topic_task_selected_wrapper:hover {
   border: 2px solid var(--theme-color);
-  background-color: var(--theme-color);
-  color: var(--white);
+  background-color: transparent;
+  color: var(--text-color);
   transition: 0.1s linear;
   cursor: pointer;
 }
@@ -71,12 +73,14 @@
   align-items: center;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  border: 2px solid var(--theme-color);
   justify-content: space-between;
 }
 
 .solution_short_details:hover {
   cursor: pointer;
+  transform: translate3d(0px, -5px, -5px);
+  transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
 .solution_short_details_number_name_wrapper {
@@ -103,17 +107,20 @@
   border-radius: 20px;
   background-color: var(--theme-color);
   color: var(--white);
+  margin-right: 4px;
 }
 
 /* dashboard-task.module.css */
-.completed, .easy {
+.completed,
+.easy {
   --tw-text-opacity: 1;
-  color: rgb(0 184 163/var(--tw-text-opacity))
+  color: rgb(0 184 163 / var(--tw-text-opacity));
 }
 
-.in_progress, .medium {
+.in_progress,
+.medium {
   --tw-text-opacity: 1;
-    color: rgb(255 192 30 / var(--tw-text-opacity));
+  color: rgb(255 192 30 / var(--tw-text-opacity));
 }
 
 .hard {

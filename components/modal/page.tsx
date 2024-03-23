@@ -1,5 +1,3 @@
-'use client';
-
 import { useState, useRef } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { addDoc, collection } from "@firebase/firestore";
@@ -128,6 +126,7 @@ const Modal: React.FC<CloseModal> = ({ onClose }) => {
       event.preventDefault();
       const docRef = await addDoc(collection(db, "users", userId, "solutions"), newSolution);
       onClose();
+      window.location.reload();
     } 
     catch (error: any) {
       console.log(error);

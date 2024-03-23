@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import ProtectedRoute from "@/components/protected-route/page";
 
 import DashBoardNoTask from "@/components/dashboard/dashboard_no_task/page";
@@ -6,7 +6,7 @@ import DashBoardTask from "@/components/dashboard/dashboard_task/page";
 
 import { getDocs, collection } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
-import { useState, useEffect, ReactEventHandler } from "react";
+import { useState, useEffect } from "react";
 import { Solution } from "@/types/solution";
 import { db } from "@/config/db";
 

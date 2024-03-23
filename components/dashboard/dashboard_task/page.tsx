@@ -64,7 +64,7 @@ const DashBoardTask: React.FC<SolutionByTopic> = ({ solutionsByTopic }) => {
                     }
                   >
                     <p className={styles.solution_short_details_text}>
-                      {solution.number}
+                      {`${solution.number}.`}
                     </p>
                     <p className={styles.solution_short_details_name}>
                       {solution.name}
