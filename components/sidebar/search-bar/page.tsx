@@ -7,7 +7,7 @@ const SearchBar: React.FC = () => {
         <div className={styles.search_box}>
             <div className={styles.search}>
                 <div className={styles.text_and_icon}>
-                    <input type="text" className={styles.search_text} placeholder="Search by Company, Keyword or the designation .." />
+                    <input type="text" className={styles.search_text} placeholder="Search by topics, number, or name...." />
                     <IoSearch className={styles.search_icon}/>
                 </div>
             </div>
